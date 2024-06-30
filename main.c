@@ -3,7 +3,7 @@
 #include <time.h>
 
 #define SIZE_DICES 5
-#define NUMBEROFROUNDS 13
+#define NUMBEROFROUNDS 14
 #define FILENAME "Yathzee.txt"
 
 #ifdef _WIN32
@@ -36,7 +36,7 @@ void load_game(char*, int*, int*, int*, int*);
 
 int main()
 {
-    /// déclaration des variables
+    /// dÃ©claration des variables
     int continue_game = 0;
     char table_values[NUMBEROFROUNDS+1];
     int i;
@@ -70,7 +70,7 @@ int main()
         create_table(dices);
         result_choice(choice, dices);
         show_dices(dices);
-        printf("     Votre choix pour ces des (1 . . . 13) : ");
+        printf("     Votre choix pour ces des (1 . . . %i) : ", NUMBEROFROUNDS);
         scanf("%i", &card);
         fflush(stdin);
         verify_if_used(table_values, &card);
@@ -151,7 +151,7 @@ void home()
 
 void show_menu(char* table, int total, int bonus, int total_general)
 {
-    /// Si la valeur stocké n'est pas un tiret, je transforme mon char en int
+    /// Si la valeur stockÃ© n'est pas un tiret, je transforme mon char en int
     if(table[0]== '-')
     {
         printf("1.  AS            :   %c\n", table[0]);
@@ -308,7 +308,7 @@ void show_menu(char* table, int total, int bonus, int total_general)
     printf("Encodage des des a rejouer (A=aucun T=tous 135=le un, le trois et le cinq)\n");
 }
 
-/// fonction qui remplit mon tableau de dés
+/// fonction qui remplit mon tableau de dÃ©s
 void create_table(int* tab)
 {
     for(int i=0; i < SIZE_DICES; i++)
@@ -333,7 +333,7 @@ void animation()
     }
 }
 
-/// affiche les dés
+/// affiche les dÃ©s
 void show_dices(int* dices)
 {
     for(int i=0; i < SIZE_DICES; i++)
@@ -359,7 +359,7 @@ char intToChar(int caract)
     return caract += 48;
 }
 
-/// demande l'action à réaliser et la réalise
+/// demande l'action Ã  rÃ©aliser et la rÃ©alise
 void result_choice(char* choice, int* dices)
 {
 
@@ -393,7 +393,7 @@ void result_choice(char* choice, int* dices)
     }
 }
 
-/// Vérifier si un contrat n'est pas utilisé et reposé la question si jamais
+/// VÃ©rifier si un contrat n'est pas utilisÃ© et reposÃ© la question si jamais
 void verify_if_used(char* table, int* nbr)
 {
     if(table[*nbr-1] != '-')
@@ -409,7 +409,7 @@ void verify_if_used(char* table, int* nbr)
     }
 }
 
-/// fonction qui vérifie les 6 premiers contrats
+/// fonction qui vÃ©rifie les 6 premiers contrats
 void upper_section(int* dices, char* table, int x, int* total, int* total_general, int* bonus)
 {
     int counter = 0;
@@ -447,7 +447,7 @@ void upper_section(int* dices, char* table, int x, int* total, int* total_genera
     }
 }
 
-/// fonction qui vérifie le brelan
+/// fonction qui vÃ©rifie le brelan
 void brelan(int* dices, char* table, int* total_general)
 {
     for(int i=1; i<7; i++)
@@ -513,13 +513,13 @@ void two_pairs(int* dices, char* table, int* total_general)
     return;
 }
 
-/// fonction qui vérifie le carrée
+/// fonction qui vÃ©rifie le carrÃ©e
 void square(int* dices, char* table, int* total_general)
 {
-    for(int i=1; i<7; i++) /// boucle pour comparer avec les dés
+    for(int i=1; i<7; i++) /// boucle pour comparer avec les dÃ©s
     {
         int counter = 0;
-        for(int j=0; j<SIZE_DICES; j++) /// boucler sur les dés
+        for(int j=0; j<SIZE_DICES; j++) /// boucler sur les dÃ©s
         {
             if(dices[j] == i)
             {
@@ -539,7 +539,7 @@ void square(int* dices, char* table, int* total_general)
     }
 }
 
-/// fonction qui vérifie le full house
+/// fonction qui vÃ©rifie le full house
 void full_house(int* dices, char* table, int* total_general)
 {
     int i;
@@ -577,7 +577,7 @@ void full_house(int* dices, char* table, int* total_general)
 
 }
 
-/// fonction qui vérifie la petite suite
+/// fonction qui vÃ©rifie la petite suite
 void small_suite(int* dices, char* table, int* total_general)
 {
     int i;
@@ -585,12 +585,12 @@ void small_suite(int* dices, char* table, int* total_general)
     int small_Suite = 0;
     int score = 0;
 
-    for(i=0; i<SIZE_DICES; i++) /// mets le nombre de 1 que j'ai dans mes dés dans la tableau avec l'index 1
+    for(i=0; i<SIZE_DICES; i++) /// mets le nombre de 1 que j'ai dans mes dÃ©s dans la tableau avec l'index 1
     {
         counts[dices[i]]++;
     }
 
-    /// vérifie tout les cas possibles
+    /// vÃ©rifie tout les cas possibles
     if(counts[1] != 0 && counts[2] != 0 && counts[3] != 0 && counts[4] != 0)
     {
         score = 25;
@@ -616,7 +616,7 @@ void small_suite(int* dices, char* table, int* total_general)
     }
 }
 
-/// fonction qui vérifie la grande suite
+/// fonction qui vÃ©rifie la grande suite
 void big_suite(int* dices, char* table, int* total_general)
 {
     int i;
@@ -625,10 +625,10 @@ void big_suite(int* dices, char* table, int* total_general)
 
     for(i=0; i<SIZE_DICES; i++)
     {
-        counts[dices[i]]++; /// mets le nombre de 1 que j'ai dans mes dés dans la tableau avec l'index 1
+        counts[dices[i]]++; /// mets le nombre de 1 que j'ai dans mes dÃ©s dans la tableau avec l'index 1
     }
 
-    /// vérifie tout les cas possibles
+    /// vÃ©rifie tout les cas possibles
     if(counts[1] == 1 && counts[2] == 1 && counts[3] == 1 && counts[4] == 1 && counts[5] == 1)
     {
         bigSuite = 1;
@@ -650,7 +650,7 @@ void big_suite(int* dices, char* table, int* total_general)
     }
 }
 
-/// fonction qui vérifie le yahtzee
+/// fonction qui vÃ©rifie le yahtzee
 void yams(int* dices, char* table, int* total_general)
 {
     int temp = dices[0];
@@ -689,7 +689,7 @@ void save_game(char* table, int total, int bonus, int total_general, int continu
     }
 }
 
-/// fonction qui vérifie s'il y a une sauvegarde et la charge si besoin
+/// fonction qui vÃ©rifie s'il y a une sauvegarde et la charge si besoin
 void load_game(char* table, int* total, int* bonus, int* total_general, int* continue_game)
 {
     FILE * file = fopen(FILENAME, "r");
